@@ -1,0 +1,87 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700);
+
+@mixin absolutely {
+  position: absolute;
+  top:0; right:0; bottom:0; left:0;
+  margin: auto;
+}
+
+@mixin animation($a) {
+  -webkit-animation: $a;
+  animation: $a;
+}
+
+@mixin animation-delay($a) {
+  -webkit-animation-delay: $a;
+  animation-delay: $a;
+}
+
+@mixin clip-path($c) {
+  -webkit-clip-path: $c;
+  clip-path: $c;
+}
+
+@mixin transform($t){
+  -webkit-transform: $t;
+  -ms-transform: $t;
+  transform: $t;
+}
+
+@mixin cf {
+  &:before, &:after {
+    content:" ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+*, *:focus, *:before, *:after {box-sizing: border-box; margin:0; padding:0; outline: none; text-decoration: none; list-style: none;}
+
+html, body {
+  width: 100vw;
+  height:100vh;
+  font-size: 14px;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.heading {
+  text-align: center;
+  
+  h1 {
+    font-size: 2rem;
+    line-height: 2rem;
+    padding: 3rem;
+  }
+  
+  input {
+    width: 4rem;
+    height: 3rem;
+    font-size: inherit;
+    font-weight: inherit;
+    text-align: center;
+    position: relative;
+  } 
+}
+
+.pascal-container {
+}
+
+.row {
+  text-align: center;
+  margin: 0 auto -1.2rem;
+  display: block;
+  
+  font-size: 0;
+  
+  li {
+    display: inline-block;
+    font-size: 2rem;
+    width: 5rem;
+    height: 5rem;
+    line-height: 5rem;
+    background-color: #ccc;
+    @include clip-path(polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%));
+  }
+}
