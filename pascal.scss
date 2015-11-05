@@ -27,6 +27,12 @@
   transform: $t;
 }
 
+@mixin transform-origin($t){
+  -webkit-transform-origin: $t;
+  -ms-transform-origin: $t;
+  transform-origin: $t;
+}
+
 @mixin cf {
   &:before, &:after {
     content:" ";
@@ -41,10 +47,15 @@
 
 html, body {
   width: 100vw;
-  height:100vh;
+  width: auto;
+  min-height:100vh;
   font-size: 14px;
   font-family: 'Roboto Condensed', sans-serif;
+  background: repeating-linear-gradient( -90deg, #f9f9f9, #cccccc 50px) center center;
+  
 }
+
+body {}
 
 .heading {
   text-align: center;
@@ -52,7 +63,7 @@ html, body {
   h1 {
     font-size: 2rem;
     line-height: 2rem;
-    padding: 3rem;
+    padding: 3rem; 
   }
   
   input {
@@ -66,22 +77,69 @@ html, body {
 }
 
 .pascal-container {
+  @include absolutely;
+  top: 126px;
+  min-width: 100%;
+  height: auto;
+
+  > div {
+    @include transform-origin(50% 0%);
+  }
 }
 
+@keyframes row-fade-in {
+  from {
+    opacity: .25;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
 .row {
-  text-align: center;
-  margin: 0 auto -1.2rem;
   display: block;
+  margin: 0 auto -1rem;
   
+  white-space: nowrap;
   font-size: 0;
+  text-align: center;
+  opacity: 1;
+  animation: row-fade-in .1s ease-in-out;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  width: inherit;
   
   li {
     display: inline-block;
+    white-space: nowrap;
     font-size: 2rem;
-    width: 5rem;
-    height: 5rem;
-    line-height: 5rem;
-    background-color: #ccc;
+    position: relative;
+    overflow: hidden;
+    width: 4rem;
+    height: 4rem;
+    line-height: 4rem;
+    overflow: hidden;
+    background-color: rgba(0,0,0,1);
     @include clip-path(polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%));
+    -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+    
+    
+    &:before {
+      content:" ";
+      @include absolutely;
+      @include clip-path(polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%));
+      width: 90%;
+      height: 90%;
+      background-color: red;
+      z-index: -1;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      overflow: hidden;
+    
+    }
   }
 }
+
+
