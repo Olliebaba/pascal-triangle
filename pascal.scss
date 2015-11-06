@@ -99,7 +99,7 @@ body {}
 
 .row {
   display: block;
-  margin: 0 auto -1rem;
+  margin: 0 auto -16px;
   
   white-space: nowrap;
   font-size: 0;
@@ -113,33 +113,38 @@ body {}
   li {
     display: inline-block;
     white-space: nowrap;
-    font-size: 2rem;
+    font-size: 32px;
     position: relative;
-    overflow: hidden;
-    width: 4rem;
-    height: 4rem;
-    line-height: 4rem;
-    overflow: hidden;
-    background-color: rgba(0,0,0,1);
-    @include clip-path(polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%));
-    -webkit-backface-visibility: hidden;
-      backface-visibility: hidden;
+    line-height: 64px;
+    background-color: black;
     
+    &, &:before {
+      width: 64px;
+      height: 64px;
+      overflow: hidden;
+      @include clip-path(url(#hexPath));
+    }
     
     &:before {
       content:" ";
-      @include absolutely;
-      @include clip-path(polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%));
-      width: 90%;
-      height: 90%;
-      background-color: red;
-      z-index: -1;
-      -webkit-backface-visibility: hidden;
-      backface-visibility: hidden;
+      display: block;
+      width: 64px;
+      height: 64px;
+      line-height: 64px;
       overflow: hidden;
-    
+      background-color: red;
+      @include absolutely;
+      @include clip-path(url(#hexPath));
+      z-index:-1;
+      @include transform(scale(.9));
     }
   }
 }
 
-
+[data-int] {
+  &[data-int="1"] {
+    &:before{
+    background-color: white;
+    }
+  }
+}
