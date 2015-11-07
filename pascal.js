@@ -23,17 +23,18 @@ var pascals = function(n) {
 var printPascals = function(t) {
   $s = "";
   for (var i = 0; i < t.length; i++) {
-    $s += ('<ul style="animation-delay: .0'+ (i * 2) +'s;" class="row" data-row="' + (i + 1) + '">');
+    var pascalRow = $('<ul></ul>').addClass('row').attr('data-row', (i + 1) ).css('animation-delay',('.0'+ (i * 2) +'s'));
+    
+    
     for (var e = 0; e < t[i].length; e++) {
-      $s += ('<li data-int="' + (t[i][e]+1)%2 + '">' + t[i][e] + '</li>');
+      pascalRow.append($('<li data-int="' + (t[i][e]+1)%2 + '">' + t[i][e] + '</li>'));
     }
-    $s += ('</ul>');
+    $('.pascal-container > div').append(pascalRow);
   }
-  $('.pascal-container > div').html($s);
   $('.pascal-container').attr('data-num-rows',t.length);
 };
 
-printPascals(pascals(5));
+printPascals(pascals(10));
 
 $('#row-num').on('input', function(){
     var myVal = $('#row-num').val();
