@@ -1,0 +1,108 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700);
+*, *:focus, :before, :after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  text-decoration: none;
+  list-style: none; }
+
+html, body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-size: 14px;
+  font-family: 'Roboto Condensed', sans-serif;
+  background: repeating-linear-gradient(-90deg, #f9f9f9, #cccccc 50px) center center; }
+
+.heading {
+  text-align: center; }
+  .heading h1 {
+    font-size: 2rem;
+    line-height: 8rem; }
+  .heading input {
+    width: 4rem;
+    height: 3rem;
+    font-size: inherit;
+    font-weight: inherit;
+    text-align: center; }
+
+.pascal-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  top: 8rem;
+  min-width: 100%;
+  height: auto; }
+  .pascal-container > div {
+    -webkit-transform-origin: 50% 0%;
+    -ms-transform-origin: 50% 0%;
+    transform-origin: 50% 0%;
+    transition: transform .3s ease-in-out; }
+
+.row {
+  display: block;
+  margin: 0 auto -16px;
+  white-space: nowrap;
+  font-size: 0;
+  text-align: center;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden; }
+  .row li {
+    display: inline-block;
+    white-space: nowrap;
+    font-size: 32px;
+    position: relative;
+    background-color: black;
+    cursor: pointer; }
+    .row li, .row li:before {
+      width: 64px;
+      height: 64px;
+      line-height: 64px;
+      overflow: hidden;
+      -webkit-clip-path: url(#hexPath);
+      clip-path: url(#hexPath); }
+    .row li:before {
+      content: " ";
+      display: block;
+      background-color: red;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      margin: auto;
+      z-index: -1;
+      -webkit-transform: scale(0.9);
+      -ms-transform: scale(0.9);
+      transform: scale(0.9); }
+
+[data-int][data-int="1"]:before {
+  background-color: white; }
+
+#info-panel {
+  display: none;
+  background-color: white;
+  border-radius: 4px;
+  border: 2px solid #000;
+  position: fixed;
+  z-index: 999; }
+  #info-panel dl {
+    padding: 1rem;
+    color: red; }
+    #info-panel dl *:before {
+      color: black; }
+    #info-panel dl dt {
+      text-align: center;
+      font-size: 1.5rem; }
+  #info-panel .cell-value:before {
+    content: "Value: "; }
+  #info-panel .cell-row:before {
+    content: "Row: "; }
+  #info-panel .cell-index:before {
+    content: "Index: "; }
+
+/*# sourceMappingURL=pascal.css.map */

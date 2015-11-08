@@ -104,6 +104,7 @@ body {}
     font-size: ($tile-size / 2);
     position: relative;
     background-color: black;
+    cursor: pointer;
     
     &, &:before {
       width: $tile-size;
@@ -131,3 +132,45 @@ body {}
     }
   }
 }
+
+
+#info-panel {
+    display: none;
+    background-color: white;
+    border-radius: 4px;
+    border: 2px solid #000;
+    position: fixed;
+    z-index: 999;
+    
+    dl {
+        padding: 1rem;
+        color: red;
+        
+        *:before {
+            color: black;
+        }
+        dt {
+            text-align: center;
+            font-size: 1.5rem; 
+        }
+    }
+    
+    .cell {
+        &-value {
+            &:before {
+                content:"Value: ";
+            }   
+        }
+        &-row {
+            &:before {
+                content:"Row: ";
+            }
+        }
+        &-index {
+            &:before {
+                content:"Index: ";
+            }
+        }
+    }
+}
+
