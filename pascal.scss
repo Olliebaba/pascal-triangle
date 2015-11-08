@@ -1,5 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700);
 
+$tile-size: 64px;
+
 @mixin absolutely {
   position: absolute;
   top:0; right:0; bottom:0; left:0;
@@ -43,12 +45,12 @@
   }
 }
 
-*, *:focus, *:before, *:after {box-sizing: border-box; margin:0; padding:0; outline: none; text-decoration: none; list-style: none;}
+*, *:focus, :before, :after {box-sizing: border-box; margin:0; padding:0; outline: none; text-decoration: none; list-style: none;}
 
 html, body {
   width: 100vw;
-  width: auto;
-  min-height:100vh;
+  height:100vh;
+  overflow: hidden;
   font-size: 14px;
   font-family: 'Roboto Condensed', sans-serif;
   background: repeating-linear-gradient( -90deg, #f9f9f9, #cccccc 50px) center center;
@@ -62,8 +64,7 @@ body {}
   
   h1 {
     font-size: 2rem;
-    line-height: 2rem;
-    padding: 3rem; 
+    line-height: 8rem;
   }
   
   input {
@@ -72,55 +73,42 @@ body {}
     font-size: inherit;
     font-weight: inherit;
     text-align: center;
-    position: relative;
   } 
 }
 
 .pascal-container {
   @include absolutely;
-  top: 126px;
+  top: 8rem;
   min-width: 100%;
   height: auto;
 
   > div {
     @include transform-origin(50% 0%);
+    //transition-delay: .1s;
+    transition: transform .3s ease-in-out;
   }
 }
-
-@keyframes row-fade-in {
-  from {
-    opacity: .25;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
 
 .row {
   display: block;
-  margin: 0 auto -16px;
-  
+  margin: 0 auto ($tile-size / -4);
   white-space: nowrap;
   font-size: 0;
   text-align: center;
-  opacity: 1;
-  animation: row-fade-in .1s ease-in-out;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  width: inherit;
   
   li {
     display: inline-block;
     white-space: nowrap;
-    font-size: 32px;
+    font-size: ($tile-size / 2);
     position: relative;
-    line-height: 64px;
     background-color: black;
     
     &, &:before {
-      width: 64px;
-      height: 64px;
+      width: $tile-size;
+      height: $tile-size;
+      line-height: $tile-size;
       overflow: hidden;
       @include clip-path(url(#hexPath));
     }
@@ -128,13 +116,8 @@ body {}
     &:before {
       content:" ";
       display: block;
-      width: 64px;
-      height: 64px;
-      line-height: 64px;
-      overflow: hidden;
       background-color: red;
       @include absolutely;
-      @include clip-path(url(#hexPath));
       z-index:-1;
       @include transform(scale(.9));
     }

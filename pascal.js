@@ -1,21 +1,39 @@
+// returns an object literal of css property/value sets with 
+// major rendering engine prefixes
+function prefixedCSS(prop,val){
+  var s='',
+      o = {},
+      p = ['-webkit-','-moz-',"-ms-",'-o-',''];
+  for (var i=0; i<p.length; i++) {
+    s = p[i] + prop;
+    o[s] = val;
+  }
+  return o;
+}
+
+// returns page's rem as px 
+var rem = function rem() {
+  var html = document.getElementsByTagName('html')[0];
+  return function () {
+    return parseInt(window.getComputedStyle(html)['fontSize']);
+  }
+}();
+
+// returns 2d array of triangle values
+// param is num rows on pascal triangle
 var pascals = function(n) {
-  var lastRow, myTriangle = [];
-  // loops as many rows we have
+  var prevRow, myTriangle = [];
   for (var i = 0; i < n; i++) {
-    // loops as many indexes are 
-    // on this current row
     var currentRow = [];
     for (var e = 0; e <= i; e++) {
       if (e == 0 || e == i) {
         currentRow.push(1);
-        if (e == i) {
-          myTriangle.push(currentRow);
-        }
+        if (e == i) myTriangle.push(currentRow);
       } else {
-        currentRow[e] = lastRow[e - 1] + lastRow[e];
+        currentRow[e] = prevRow[e - 1] + prevRow[e];
       }
     }
-    lastRow = currentRow;
+    prevRow = currentRow;
   }
   return myTriangle;
 };
@@ -32,24 +50,16 @@ var printPascals = function(t) {
   }  
 };
 
-printPascals(pascals(10));
+// generating a default set and scaling if necessary
+scaleTriangleToSize($('#row-num').attr('placeholder'))
+printPascals(pascals($('#row-num').attr('placeholder')));
 
+// creates and scales new triangle when input value is changed
 $('#row-num').on('input', function(){
     var myVal = $('#row-num').val();
     scaleTriangleToSize(myVal); 
     printPascals(pascals(myVal));
 });
- 
-
-
-//
-// returns rem font-size for page 
-var rem = function rem() {
-  var html = document.getElementsByTagName('html')[0];
-  return function () {
-    return parseInt(window.getComputedStyle(html)['fontSize']);
-  }
-}();
 
 //calculates height of triangle
 function triangleHeight(r) {
@@ -60,44 +70,50 @@ function triangleHeight(r) {
 
 // returns specified row's width
 function getRowWidth(r) {
-  return ( r * 64);
+  return ( r * 64); // dynamically get width instead?
 }
 
 // measures FullWidth to Relative width
 // body vs triangle in this case
-function widthRatio(fw, rw) {
+function getRatio(fw, rw) {
   return (fw * 100) / rw;
 }
 
 function scaleTriangleToSize(nr) {
-  var rowWidth = getRowWidth(nr);
-  var bodyWidth = $('body').width();
-  var wrb = widthRatio(rowWidth,bodyWidth); // relative  to body
-  var wrr = widthRatio(bodyWidth,rowWidth); // relative  to the row
-  wrr = wrr.toString().split('.')[0];
-  console.log (wrr);
+  var bodyWidth = $('body').width(),
+      bodyHeight = $('body').height(),
+      rowWidth = getRowWidth(nr),
+      wrb = getRatio(rowWidth,bodyWidth), // relative to the body
+      wrr = getRatio(bodyWidth,rowWidth); // relative to the row
+    wrr = wrr.toString().split('.')[0];
   
-  if (wrb > 100) {
-    $('.pascal-container').width(rowWidth).css('margin-left', '-'+((rowWidth - bodyWidth) / 2)+'px');
+  (bodyWidth >= bodyHeight) ? scaleByHeight() : scaleByWidth()
+  
+  function scaleByWidth() {
     
-    $('.pascal-container > div').css(prefixedCSS('transform','scale( .' + wrr + ')'));
-  } else {
-    $('.pascal-container').removeAttr('style');
-    $('.pascal-container > div').removeAttr('style');
+    if (wrb > 100) {
+      $('.pascal-container').width(rowWidth).css('margin-left', (-(rowWidth - bodyWidth) / 2)+'px');
+      $('.pascal-container > div').css(prefixedCSS('transform','scale( .' + wrr + ')'));
+    } else {
+      $('.pascal-container').removeAttr('style');
+      $('.pascal-container > div').removeAttr('style');
+    }
   }
-}
-
-
-
-// set css prefixes
-function prefixedCSS(prop,val){
-  var s='',
-      o = {},
-      p = ['-webkit-','-moz-',"-ms-",'-o-',''];
   
-  for (var i=0; i<p.length; i++) {
-    s = p[i] + prop;
-    o[s] = val;
+  function scaleByHeight() {
+    var dh = bodyHeight - $('.heading').height(),
+        th = triangleHeight(nr),
+        hrb = parseInt(getRatio(th,dh)),
+        hrt = parseInt(getRatio(dh,th));
+    if (hrb > 100) {
+      $('.pascal-container').width(rowWidth).css('margin-left', (-(rowWidth - bodyWidth) / 2)+'px');
+      $('.pascal-container > div').css(prefixedCSS('transform','scale( .' + hrt + ')'));
+    } else {
+      $('.pascal-container').removeAttr('style');
+      $('.pascal-container > div').removeAttr('style');
+    }
   }
-  return o;
 }
+
+
+
