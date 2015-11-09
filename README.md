@@ -1,2 +1,2 @@
 # pascal-triangle
-An example of dynamically creating (js) a Pascal Triangle into HTML. [Example Here](http://codepen.io/Olliebaba/pen/QjBPja?editors=100)
+An example of dynamically creating (js) a Pascal Triangle into HTML. [Example Here](http://nemoburian.com/pascal-triangle/)
