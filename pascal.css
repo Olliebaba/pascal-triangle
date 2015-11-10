@@ -56,6 +56,7 @@ html, body {
     white-space: nowrap;
     font-size: 32px;
     position: relative;
+    z-index: 1;
     background-color: black;
     cursor: pointer; }
     .row li, .row li:before {
@@ -79,6 +80,11 @@ html, body {
       -webkit-transform: scale(0.9);
       -ms-transform: scale(0.9);
       transform: scale(0.9); }
+    .row li:hover {
+      -webkit-transform: scale(1.75);
+      -ms-transform: scale(1.75);
+      transform: scale(1.75);
+      z-index: 2; }
 
 [data-int][data-int="1"]:before {
   background-color: white; }
@@ -89,7 +95,8 @@ html, body {
   border-radius: 4px;
   border: 2px solid #000;
   position: fixed;
-  z-index: 999; }
+  z-index: 999;
+  transition: all .1s ease-in-out; }
   #info-panel dl {
     padding: 1rem;
     color: red; }

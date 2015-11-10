@@ -103,6 +103,7 @@ body {}
     white-space: nowrap;
     font-size: ($tile-size / 2);
     position: relative;
+    z-index: 1;
     background-color: black;
     cursor: pointer;
     
@@ -112,6 +113,7 @@ body {}
       line-height: $tile-size;
       overflow: hidden;
       @include clip-path(url(#hexPath));
+        
     }
     
     &:before {
@@ -122,8 +124,14 @@ body {}
       z-index:-1;
       @include transform(scale(.9));
     }
+      
+    &:hover {
+        @include transform(scale(1.75));
+        z-index: 2;
+    }
   }
 }
+
 
 [data-int] {
   &[data-int="1"] {
@@ -141,6 +149,7 @@ body {}
     border: 2px solid #000;
     position: fixed;
     z-index: 999;
+    transition: all .1s ease-in-out;
     
     dl {
         padding: 1rem;

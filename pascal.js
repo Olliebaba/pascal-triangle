@@ -127,17 +127,28 @@ function scaleTriangleToSize(nr) {
 
 function bindMouse(){
     $('.row li').on('mouseover',function(e){
+        
+        $me = $(this),
+        $myTop = $me.offset().top + ($me.height() / 4),
+        $myLeft = $me.offset().left + ($me.width() * 2);
+        
+        
+        $('#info-panel .cell-value').html($me.html());
+        $('#info-panel .cell-row').html($me.parent().attr('data-row'));
+        $('#info-panel .cell-index').html($me.attr('data-index'));
+        $('#info-panel').css('top',$myTop).css('left',$myLeft);
+        
         $('#info-panel').show();
+        
+        
+        
+        
 
-        $('.row li').mousemove(function(){
+        /* $('.row li').mousemove(function(){
             mouseX = e.pageX + 32; 
             mouseY = e.pageY - 32;
-            $me = $(this);
-            $('#info-panel .cell-value').html($me.html());
-            $('#info-panel .cell-row').html($me.parent().attr('data-row'));
-            $('#info-panel .cell-index').html($me.attr('data-index'));
-            $('#info-panel').css('top',mouseY).css('left',mouseX);
-        });
+            
+        }); */
 
         }).on('mouseleave',function(e){
         $('#info-panel').hide();
