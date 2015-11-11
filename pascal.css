@@ -42,6 +42,8 @@ html, body {
     -ms-transform-origin: 50% 0%;
     transform-origin: 50% 0%;
     transition: transform .3s ease-in-out; }
+  .pascal-container [style*="scale(0.7"], .pascal-container [style*="scale(0.6"], .pascal-container [style*="scale(0.5"], .pascal-container [style*="scale(0.4"], .pascal-container [style*="scale(0.3"], .pascal-container [style*="scale(0.2"], .pascal-container [style*="scale(0.1"], .pascal-container [style*="scale(0.0"] {
+    color: transparent; }
 
 .row {
   display: block;
@@ -96,7 +98,8 @@ html, body {
   border: 2px solid #000;
   position: fixed;
   z-index: 999;
-  transition: all .1s ease-in-out; }
+  transition: all .01s ease-in-out;
+  pointer-events: none; }
   #info-panel dl {
     padding: 1rem;
     color: red; }

@@ -87,6 +87,10 @@ body {}
     //transition-delay: .1s;
     transition: transform .3s ease-in-out;
   }
+    
+    [style*="scale(0.7"],[style*="scale(0.6"],[style*="scale(0.5"],[style*="scale(0.4"],[style*="scale(0.3"],[style*="scale(0.2"],[style*="scale(0.1"],[style*="scale(0.0"] {
+        color: transparent;
+    }
 }
 
 .row {
@@ -149,7 +153,8 @@ body {}
     border: 2px solid #000;
     position: fixed;
     z-index: 999;
-    transition: all .1s ease-in-out;
+    transition: all .01s ease-in-out;
+    pointer-events: none;
     
     dl {
         padding: 1rem;

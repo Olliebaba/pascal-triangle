@@ -128,10 +128,10 @@ function scaleTriangleToSize(nr) {
 function bindMouse(){
     $('.row li').on('mouseover',function(e){
         
-        $me = $(this),
-        $myTop = $me.offset().top + ($me.height() / 4),
-        $myLeft = $me.offset().left + ($me.width() * 2);
-        
+        var $me = $(this),
+        $myScale = ( typeof $('.pascal-container > div').attr('style') != "undefined") ? $('.pascal-container > div').attr('style').replace('transform: scale(','').replace(');','') : 1,
+        $myTop = $me.offset().top + (($me.height() / 4) * $myScale),
+        $myLeft = $me.offset().left + (($me.width() * 2) * $myScale);
         
         $('#info-panel .cell-value').html($me.html());
         $('#info-panel .cell-row').html($me.parent().attr('data-row'));
@@ -140,20 +140,15 @@ function bindMouse(){
         
         $('#info-panel').show();
         
-        
-        
-        
-
-        /* $('.row li').mousemove(function(){
-            mouseX = e.pageX + 32; 
-            mouseY = e.pageY - 32;
-            
-        }); */
-
         }).on('mouseleave',function(e){
-        $('#info-panel').hide();
-
-        $('#info-panel').removeAttr('style');
+        var $me = $(this);
+        
+        setTimeout(function(){
+            if ($('.pascal-container li:hover').length == 0) {
+                $('#info-panel').hide();
+                $('#info-panel').removeAttr('style');
+            }
+        }, 100);
     }); 
 }
 
