@@ -13,13 +13,156 @@ html, body {
   overflow: hidden;
   font-size: 14px;
   font-family: 'Roboto Condensed', sans-serif;
-  background: repeating-linear-gradient(-90deg, #f9f9f9, #cccccc 50px) center center; }
+  background-image: url(images/galaxy.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed; }
 
 .heading {
-  text-align: center; }
+  text-align: center;
+  position: relative; }
+  .heading > a {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    padding: .5rem;
+    font-size: 1rem;
+    background-color: #5D819B;
+    border-radius: .25rem;
+    color: black;
+    overflow: hidden; }
+    .heading > a:before {
+      content: " ";
+      position: absolute;
+      display: block;
+      border: .75rem solid transparent;
+      border-right-color: black;
+      width: 0;
+      height: 0;
+      margin: auto;
+      top: 0;
+      left: -150%;
+      right: 0;
+      bottom: 0;
+      transition: all .1s ease-in-out;
+      -webkit-transform: translateX(0%);
+      -ms-transform: translateX(0%);
+      transform: translateX(0%);
+      transition: transform .3s ease-in-out; }
+    .heading > a:after {
+      content: " ";
+      position: absolute;
+      display: block;
+      width: .75rem;
+      height: .5rem;
+      background-color: black;
+      margin: auto;
+      top: 0;
+      left: 100%;
+      right: 0;
+      bottom: 0;
+      transition: all .1s ease-in-out;
+      -webkit-transform: translateX(0%);
+      -ms-transform: translateX(0%);
+      transform: translateX(0%);
+      transition: transform .3s ease-in-out; }
+    .heading > a span {
+      -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+      transform: scale(1);
+      display: block;
+      transition: transform .2s ease-in-out; }
+    .heading > a:hover span {
+      -webkit-transform: scale(0);
+      -ms-transform: scale(0);
+      transform: scale(0);
+      transition-delay: .1s; }
+    .heading > a:hover:before {
+      -webkit-transform: translateX(100%);
+      -ms-transform: translateX(100%);
+      transform: translateX(100%); }
+    .heading > a:hover:after {
+      -webkit-transform: translateX(-182%);
+      -ms-transform: translateX(-182%);
+      transform: translateX(-182%); }
+    .heading > a:active span {
+      -webkit-transform: scale(0);
+      -ms-transform: scale(0);
+      transform: scale(0);
+      transition-delay: .1s; }
+    .heading > a:active:before {
+      -webkit-transform: translateX(-100%);
+      -ms-transform: translateX(-100%);
+      transform: translateX(-100%); }
+    .heading > a:active:after {
+      -webkit-transform: translateX(-700%);
+      -ms-transform: translateX(-700%);
+      transform: translateX(-700%); }
   .heading h1 {
     font-size: 2rem;
-    line-height: 8rem; }
+    line-height: 8rem;
+    color: white;
+    letter-spacing: .25rem;
+    text-shadow: 0 0 0.25em rgba(0, 0, 0, 0.5); }
+    .heading h1 span {
+      position: relative;
+      letter-spacing: 0;
+      text-shadow: none; }
+      .heading h1 span:before, .heading h1 span:after {
+        position: absolute; }
+      .heading h1 span:before {
+        content: " ";
+        display: block;
+        border: 14px solid transparent;
+        border-bottom-color: black;
+        width: 0;
+        height: 0;
+        margin: auto;
+        top: 1.75rem;
+        left: 0;
+        right: 0;
+        -webkit-transform: scale(0) translateY(-5100%);
+        -ms-transform: scale(0) translateY(-5100%);
+        transform: scale(0) translateY(-5100%);
+        -webkit-transform-origin: 50% 0%;
+        -ms-transform-origin: 50% 0%;
+        transform-origin: 50% 0%;
+        transition: all .1s ease-in-out;
+        pointer-events: none; }
+      .heading h1 span:after {
+        content: "Stuff gets weird around line 58.\A Javascript can't math that high.";
+        white-space: pre;
+        display: inline-block;
+        padding: .25rem;
+        z-index: 4;
+        top: 3.5em;
+        background-color: black;
+        color: #fff;
+        font-weight: 400;
+        font-size: 1rem;
+        line-height: 1.6rem;
+        left: -5.5em;
+        right: -5.5em;
+        border-radius: .25rem;
+        transition: all .25s ease-in-out;
+        pointer-events: none;
+        -webkit-transform: scale(0) translateY(-100%);
+        -ms-transform: scale(0) translateY(-100%);
+        transform: scale(0) translateY(-100%);
+        -webkit-transform-origin: 50% 0%;
+        -ms-transform-origin: 50% 0%;
+        transform-origin: 50% 0%; }
+      .heading h1 span:hover:before {
+        -webkit-transform: scale(1) translateY(-3%);
+        -ms-transform: scale(1) translateY(-3%);
+        transform: scale(1) translateY(-3%);
+        transition-delay: .20s;
+        transition: .5s; }
+      .heading h1 span:hover:after {
+        -webkit-transform: scale(1) translateY(0%);
+        -ms-transform: scale(1) translateY(0%);
+        transform: scale(1) translateY(0%); }
   .heading input {
     width: 4rem;
     height: 3rem;
@@ -71,7 +214,7 @@ html, body {
     .row li:before {
       content: " ";
       display: block;
-      background-color: red;
+      background-color: #5D819B;
       position: absolute;
       top: 0;
       right: 0;
@@ -102,7 +245,7 @@ html, body {
   pointer-events: none; }
   #info-panel dl {
     padding: 1rem;
-    color: red; }
+    color: #5D819B; }
     #info-panel dl *:before {
       color: black; }
     #info-panel dl dt {
